@@ -78,4 +78,41 @@ Phys Eth1 -> 00100111001010101 -> Eth 2
     - websockets don't implement binary transmission natively
     - socket.io has paths/groups/rooms to group sockets
     - some browsers cannot use websockets
-- Socket.io is built in engine.io which sits on w.s. 
+- Socket.io is built in engine.io which sits on w.s. but is also able to fall back to long polling. Establishes long polling connection and then tries to upgrade to ws.
+- Node server and a js client library
+- Client Reconnection attempts - will always try to reconnect if server goes down
+- What it is not: 
+    - Not a ws implementation
+    - Uses ws when available
+
+### Multiplexing
+- 1 Client can connect to multiple different rooms etc
+
+### Documentation - https://socket.io/docs/v4/server-api/
+- Looking into npm library lib folder to view raw JS.
+#### Server
+- Server oject can be invoked by `new` or simply as a function which invokes the Server
+- Can accept an http server or just a port for the constructor.
+
+#### Namespace
+- Represents a pool of sockets connected under a given pathname.
+- "/" this is the default namespace which all sockets connect to.
+
+#### Events
+- Connect/Connection - Fired upon connection with client.
+    - When client connects you add all listeners
+
+#### Socket
+- Can choose to join or leave different namespaces
+- Inherits from EventEmitter - In node.js event module, allows adding/removing event listeners
+- .emit(<event_name>, <args e.g. values>, <ack>) - Emits event to socket
+- .on(<event_name>, <callback>) - On receiving an event 
+- Special events
+    - "disconnecting"
+    - "error"
+    - "ping" - fires every 25 seconds, heartbeat mechanism ,times out connection after 5 seconds if no response
+    - "pong" - 
+
+#### Client
+- io("url") this returns the socket and creates a new Manager
+- Emit/on exposed in client too. Same function as in client side.

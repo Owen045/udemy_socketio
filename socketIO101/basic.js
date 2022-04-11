@@ -15,9 +15,6 @@ const io = require('socket.io')(server, {
       }
 });
 // socketio server wraps http server
-// const io = socketio(server)
-
-// io.set('origins', '*:*');
 
 io.on('connection', (socket, req)=>{
     // ws.send becomes socket.emit
