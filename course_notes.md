@@ -35,7 +35,7 @@ Socket.io is abstraction built on top on the websocket api.
 ## Network Socket
 - Websockets (JS api - native browser protocol) and socket.io use TCP
 - Socket.io uses ws but fails over to long-polling
-- Processes - every think running on computer
+- Processes - every thing running on computer
     - Processes can bind to a port to transfer data (this is a socket)
 - HTTP 
     - Headers (metadata about body)
