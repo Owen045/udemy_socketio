@@ -67,8 +67,10 @@
     const socket = io('http://localhost:9006');
     
     socket.on('connect', () => {
+        // event listener
         console.log('server connecting')
         console.log(`socketed disconnected: ${socket.disconnected}`)
+        // event emitter
         socket.emit("join", "The Room")
     })
 

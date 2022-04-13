@@ -43,11 +43,14 @@ const updateWithError = () => {
 
 
 io.on('connection', (socket) => {
+    // socket extends EventEmitter class
     socket.emit('messageFromServer', {data: 'Welcome to the socketio server'});
     
     socket.on('join', (roomName) => {
+        // event listener
         console.log(roomName)
         socket.join(roomName)
+        // broadcast to clients in room
         io.to(roomName).emit('messageFromServer', {data:`Joined room: ${roomName}`})
     })
     
